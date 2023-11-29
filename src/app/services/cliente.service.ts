@@ -27,4 +27,8 @@ export class ClienteService {
   deleteCliente(id: bigint) {
     return this.httpClient.delete<any>(`${this.url}/${id}`);
   }
+
+  updateCliente(cliente: Cliente) {
+    return this.httpClient.put<any>(`${this.url}`, cliente);
+  }
 }

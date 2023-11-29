@@ -19,7 +19,7 @@
         <td>{{cliente.cliente_ciudad}}</td>
         <td>{{cliente.cliente_direccion}}</td>
         <td class="d-flex justify-content-center">
-          <button class="btn btn-warning">Editar</button>
+          <button class="btn btn-warning" (click)="updateCliente(cliente.clienteNit)">Editar</button>
           <button class="btn btn-danger mx-4" (click)="deleteCliente(cliente.clienteNit)">Eliminar</button>
           <button class="btn btn-primary" (click)="getUserDetails(cliente.clienteNit)">Detalles</button>
         </td>

@@ -29,4 +29,8 @@ export class ProveedorService {
   deleteProveedor(id: bigint) {
     return this.httpClient.delete<any>(`${this.url}/${id}`);
   }
+
+  updateProveedor(proveedor: Proveedor) {
+    return this.httpClient.put<any>(`${this.url}`, proveedor);
+  }
 }

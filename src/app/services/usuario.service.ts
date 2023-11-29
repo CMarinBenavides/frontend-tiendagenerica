@@ -34,4 +34,8 @@ export class UsuarioService {
   deleteUsuario(id: bigint) {
     return this.httpClient.delete<any>(`${this.url}/${id}`);
   }
+
+  updateUsuario(usuario: Usuario) {
+    return this.httpClient.put<any>(`${this.url}`, usuario);
+  }
 }

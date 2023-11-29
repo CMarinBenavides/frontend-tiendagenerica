@@ -59,6 +59,7 @@ export class ListUserComponent {
       confirmButtonText: 'Sí, eliminar',
       confirmButtonColor: '#ff0000',
       cancelButtonText: 'Cancelar',
+      cancelButtonColor: '#00ff33',
     }).then((result) => {
       if (result.isConfirmed) {
         this.usuarioService.deleteUsuario(id).subscribe({
@@ -85,5 +86,9 @@ export class ListUserComponent {
         });
       }
     });
+  }
+
+  updateUser(id: bigint, rol: Rol[]) {
+    this.router.navigate(['/welcome/update-user', id, rol[0].rol_nombre]);
   }
 }

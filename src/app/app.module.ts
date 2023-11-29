@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -15,6 +15,9 @@ import { DataTablesModule } from 'angular-datatables';
 import { ListProveedorComponent } from './components/usuario/list-proveedor/list-proveedor.component';
 import { ListClienteComponent } from './components/usuario/list-cliente/list-cliente.component';
 import { UserDetailsComponent } from './components/usuario/user-details/user-details.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { UploadProductoComponent } from './components/proveedor/upload-producto/upload-producto.component';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 @NgModule({
   declarations: [
@@ -26,6 +29,8 @@ import { UserDetailsComponent } from './components/usuario/user-details/user-det
     ListProveedorComponent,
     ListClienteComponent,
     UserDetailsComponent,
+    NavbarComponent,
+    UploadProductoComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,6 +39,7 @@ import { UserDetailsComponent } from './components/usuario/user-details/user-det
     FormsModule,
     SweetAlert2Module,
     DataTablesModule,
+    MDBBootstrapModule.forRoot(),
   ],
   providers: [
     {
@@ -47,5 +53,6 @@ import { UserDetailsComponent } from './components/usuario/user-details/user-det
     },
   ],
   bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}

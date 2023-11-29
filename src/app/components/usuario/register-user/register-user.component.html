@@ -44,7 +44,7 @@
             </div>
             <div class="col-2">
               <select class="form-select" name="roles" [(ngModel)]="rolSelect" #rolselect="ngModel"
-                (change)="rolSelected()" required>
+                (change)="rolSelected()" required [disabled]="update">
                 <option disabled selected>Roles</option>
                 <option [ngValue]="rol" [id]="rol.rol_id" *ngFor="let rol of roles">
                   {{rol.rol_nombre}}</option>
@@ -141,10 +141,21 @@
                 </div>
               </div>
             </div>
-            <div class="col-2">
+            <div class="col-2" *ngIf="!update">
               <div class="input-group">
                 <input class="input--style-2" type="text" placeholder="Contraseña" name="clave"
                   [(ngModel)]="usuario.clave" #clave="ngModel" required>
+              </div>
+              <div class="alert alert-danger" *ngIf="clave.invalid && (clave.dirty || clave.touched)">
+                <div *ngIf="clave.errors?.['required']">
+                  La contraseña es requerida.
+                </div>
+              </div>
+            </div>
+            <div class="col-2" *ngIf="update">
+              <div class="input-group">
+                <input class="input--style-2" type="text" placeholder="Contraseña" name="clave"
+                  [(ngModel)]="updateClave" #clave="ngModel" required>
               </div>
               <div class="alert alert-danger" *ngIf="clave.invalid && (clave.dirty || clave.touched)">
                 <div *ngIf="clave.errors?.['required']">
@@ -204,8 +215,11 @@
             </div>
           </div>
           <div class="p-t-30">
-            <button class="btn btn--radius btn--green" type="submit"
-              [disabled]="!usuarioForm.form.valid || !rolSelect.rol_nombre">Registrar</button>
+            <button class="btn btn--radius btn--green me-3" type="submit"
+              [disabled]="!usuarioForm.form.valid || !rolSelect.rol_nombre" *ngIf="!update">Registrar</button>
+            <button class="btn btn--radius btn--green me-3" type="submit"
+              [disabled]="!usuarioForm.form.valid || !rolSelect.rol_nombre" *ngIf="update">Actualizar</button>
+            <a class="btn btn--radius  btn-danger" routerLink="/welcome" *ngIf="update">Cancelar</a>
           </div>
         </form>
       </div>

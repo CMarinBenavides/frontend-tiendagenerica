@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { Cliente } from 'src/app/models/cliente/cliente';
 import { ClienteService } from 'src/app/services/cliente.service';
 import Swal from 'sweetalert2';
@@ -18,6 +19,8 @@ export class ListClienteComponent {
   ngOnInit(): void {
     this.getClientes();
   }
+
+  constructor(private router: Router) {}
 
   getClientes() {
     this.clienteService.getClientes().subscribe({
@@ -55,6 +58,7 @@ export class ListClienteComponent {
       confirmButtonText: 'Sí, eliminar',
       confirmButtonColor: '#ff0000',
       cancelButtonText: 'Cancelar',
+      cancelButtonColor: '#00ff33',
     }).then((result) => {
       if (result.isConfirmed) {
         this.clienteService.deleteCliente(id).subscribe({
@@ -76,5 +80,9 @@ export class ListClienteComponent {
         });
       }
     });
+  }
+
+  updateCliente(id: bigint) {
+    this.router.navigate(['/welcome/update-user', id, 'CLIENTE']);
   }
 }

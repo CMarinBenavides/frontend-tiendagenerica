@@ -5,6 +5,10 @@ import { get } from 'jquery';
 import { Usuario } from 'src/app/models/usuario/usuario';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { ActivatedRoute } from '@angular/router';
+import { ClienteService } from 'src/app/services/cliente.service';
+import { ProveedorService } from 'src/app/services/proveedor.service';
+import { Cliente } from 'src/app/models/cliente/cliente';
+import { Proveedor } from 'src/app/models/proveedor/proveedor';
 
 @Component({
   selector: 'app-welcome',
@@ -13,17 +17,17 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class WelcomeComponent {
   usuario: Usuario = new Usuario();
+  cliente: Cliente = new Cliente();
+  proveedor: Proveedor = new Proveedor();
   usuarioService = inject(UsuarioService);
+  clienteService = inject(ClienteService);
+  proveedorService = inject(ProveedorService);
   seeUserDetails: boolean = false;
   id: bigint;
   rol: string;
 
   ngOnInit(): void {}
   constructor(private router: Router, private route: ActivatedRoute) {}
-  onClickLogout() {
-    localStorage.removeItem('token');
-    this.router.navigate(['/login']);
-  }
 
   onClickSeeUserDetails(seeUserDetails: boolean) {
     this.seeUserDetails = seeUserDetails;

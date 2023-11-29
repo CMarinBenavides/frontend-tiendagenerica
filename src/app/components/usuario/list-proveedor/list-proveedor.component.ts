@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { Proveedor } from 'src/app/models/proveedor/proveedor';
 import { ProveedorService } from 'src/app/services/proveedor.service';
 import Swal from 'sweetalert2';
@@ -18,6 +19,8 @@ export class ListProveedorComponent {
   ngOnInit(): void {
     this.getProveedores();
   }
+
+  constructor(private router: Router) {}
 
   getProveedores() {
     this.proveedorService.getProveedores().subscribe({
@@ -55,6 +58,7 @@ export class ListProveedorComponent {
       confirmButtonText: 'Sí, eliminar',
       confirmButtonColor: '#ff0000',
       cancelButtonText: 'Cancelar',
+      cancelButtonColor: '#00ff33',
     }).then((result) => {
       if (result.isConfirmed) {
         this.proveedorService.deleteProveedor(id).subscribe({
@@ -76,5 +80,9 @@ export class ListProveedorComponent {
         });
       }
     });
+  }
+
+  updateProveedor(id: bigint) {
+    this.router.navigate(['/welcome/update-user', id, 'PROVEEDOR']);
   }
 }

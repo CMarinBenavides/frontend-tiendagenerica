@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { LoginComponent } from './components/login/login.component';
 import { authGuard } from './guards/auth.guard';
-import { UserDetailsComponent } from './components/usuario/user-details/user-details.component';
+import { UploadProductoComponent } from './components/proveedor/upload-producto/upload-producto.component';
 
 const routes: Routes = [
   { path: 'welcome', component: WelcomeComponent, canActivate: [authGuard] },
@@ -12,6 +12,16 @@ const routes: Routes = [
   {
     path: 'welcome/user-details/:id/:rol',
     component: WelcomeComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'welcome/update-user/:id/:rol',
+    component: WelcomeComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'proveedor/upload-producto',
+    component: UploadProductoComponent,
     canActivate: [authGuard],
   },
 ];
