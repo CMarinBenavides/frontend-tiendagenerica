@@ -1,0 +1,57 @@
+<div class="container mt-3" *ngIf="rol == 'EMPLEADO'">
+  <p class="h3">Informacion usuario</p>
+  <div>
+    <div>
+      <label><strong>Cedula:</strong> {{ usuario.cedula }}</label>
+    </div>
+    <div>
+      <label><strong>Nombre:</strong> {{ usuario.nombre_completo }}</label>
+    </div>
+    <div>
+      <label><strong>Usuario:</strong> {{ usuario.usuario }}</label>
+    </div>
+    <div>
+      <label><strong>Correo:</strong> {{ usuario.correo_electronico }}</label>
+    </div>
+    <a class="btn btn-secondary mt-3" (click)="onClickBack()">Regresar</a>
+  </div>
+</div>
+<div class="container mt-3" *ngIf="rol == 'PROVEEDOR'">
+  <p class="h3">Informacion proveedor</p>
+  <div>
+    <div>
+      <label><strong>NIT:</strong> {{ proveedor.nitProveedor }}</label>
+    </div>
+    <div>
+      <label><strong>Nombre:</strong> {{ proveedor.nombre_proveedor }}</label>
+    </div>
+    <div>
+      <label><strong>Telefono:</strong> {{ proveedor.telefono_proveedor }}</label>
+    </div>
+    <div>
+      <label><strong>Ciudad:</strong> {{ proveedor.ciudad_proveedor }}</label>
+    </div>
+    <div>
+      <label><strong>Direccion:</strong> {{ proveedor.direccion_proveedor }}</label>
+    </div>
+    <a class="btn btn-secondary mt-3" (click)="onClickBack()">Regresar</a>
+  </div>
+</div>
+<div class="container-mt-3" *ngIf="rol == 'CLIENTE'">
+  <p class="h3">Informacion cliente</p>
+  <div>
+    <div>
+      <label><strong>Cedula:</strong> {{ cliente.clienteNit }}</label>
+    </div>
+    <div>
+      <label><strong>Nombre:</strong> {{ cliente.cliente_nombre }}</label>
+    </div>
+    <div>
+      <label><strong>Telefono:</strong> {{ cliente.cliente_telefono }}</label>
+    </div>
+    <div>
+      <label><strong>Direccion:</strong> {{ cliente.cliente_direccion }}</label>
+    </div>
+    <a class="btn btn-secondary mt-3" (click)="onClickBack()">Regresar</a>
+  </div>
+</div>

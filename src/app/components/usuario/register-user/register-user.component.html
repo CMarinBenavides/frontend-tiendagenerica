@@ -1,0 +1,214 @@
+<div class="mt-5 font-robo">
+  <div class="wrapper wrapper--w960">
+    <div class="card card-2">
+      <div class="card-heading"></div>
+      <div class="card-body">
+        <h2 class="title">Registro</h2>
+        <form (ngSubmit)="onSubmit()" #usuarioForm="ngForm">
+          <div class="row row-space">
+            <div class="col-2" *ngIf="rolSelect.rol_nombre === 'EMPLEADO' || !rolSelect.rol_nombre">
+              <div class="input-group">
+                <input class="input--style-2" type="text" placeholder="Nombre completo" name="nombre_completo"
+                  [(ngModel)]="usuario.nombre_completo" #nombre_completo="ngModel" required>
+              </div>
+              <div class="alert alert-danger"
+                *ngIf="nombre_completo.invalid && (nombre_completo.dirty || nombre_completo.touched)">
+                <div *ngIf="nombre_completo.errors?.['required']">
+                  Nombre completo es requerido.
+                </div>
+              </div>
+            </div>
+            <div class="col-2" *ngIf="rolSelect.rol_nombre === 'PROVEEDOR'">
+              <div class="input-group">
+                <input class="input--style-2" type="text" placeholder="Nombre" name="nombre_proveedor"
+                  [(ngModel)]="proveedor.nombre_proveedor" #nombre_proveedor="ngModel" required>
+              </div>
+              <div class="alert alert-danger"
+                *ngIf="nombre_proveedor.invalid && (nombre_proveedor.dirty || nombre_proveedor.touched)">
+                <div *ngIf="nombre_proveedor.errors?.['required']">
+                  El nombre del proveedor es requerido.
+                </div>
+              </div>
+            </div>
+            <div class="col-2" *ngIf="rolSelect.rol_nombre === 'CLIENTE'">
+              <div class="input-group">
+                <input class="input--style-2" type="text" placeholder="Nombre" name="cliente_nombre"
+                  [(ngModel)]="cliente.cliente_nombre" #cliente_nombre="ngModel" required>
+              </div>
+              <div class="alert alert-danger"
+                *ngIf="cliente_nombre.invalid && (cliente_nombre.dirty || cliente_nombre.touched)">
+                <div *ngIf="cliente_nombre.errors?.['required']">
+                  El nombre del cliente es requerido.
+                </div>
+              </div>
+            </div>
+            <div class="col-2">
+              <select class="form-select" name="roles" [(ngModel)]="rolSelect" #rolselect="ngModel"
+                (change)="rolSelected()" required>
+                <option disabled selected>Roles</option>
+                <option [ngValue]="rol" [id]="rol.rol_id" *ngFor="let rol of roles">
+                  {{rol.rol_nombre}}</option>
+              </select>
+              <div class="alert alert-danger" *ngIf="rolselect.invalid && (rolselect.dirty || rolselect.touched)">
+                <div *ngIf="rolselect.errors?.['required']">
+                  Rol es requerido.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row row-space">
+            <div class="col-2" *ngIf="rolSelect.rol_nombre === 'EMPLEADO' || !rolSelect.rol_nombre">
+              <div class="input-group">
+                <input class="input--style-2" type="number" placeholder="Cedula" name="cedula"
+                  [(ngModel)]="usuario.cedula" #cedula="ngModel" required>
+              </div>
+              <div class="alert alert-danger" *ngIf="cedula.invalid && (cedula.dirty || cedula.touched)">
+                <div *ngIf="cedula.errors?.['required']">
+                  Cedula es requerida.
+                </div>
+              </div>
+            </div>
+            <div class="col-2" *ngIf="rolSelect.rol_nombre === 'PROVEEDOR'">
+              <div class="input-group">
+                <input class="input--style-2" type="number" placeholder="NIT" name="nit_proveedor"
+                  [(ngModel)]="proveedor.nitProveedor" #nit_proveedor="ngModel" required>
+              </div>
+              <div class="alert alert-danger"
+                *ngIf="nit_proveedor.invalid && (nit_proveedor.dirty || nit_proveedor.touched)">
+                <div *ngIf="nit_proveedor.errors?.['required']">
+                  El NIT del proveedor es requerido.
+                </div>
+              </div>
+            </div>
+            <div class="col-2" *ngIf="rolSelect.rol_nombre === 'CLIENTE'">
+              <div class="input-group">
+                <input class="input--style-2" type="number" placeholder="Cedula" name="cliente_nit"
+                  [(ngModel)]="cliente.clienteNit" #cliente_nit="ngModel" required>
+              </div>
+              <div class="alert alert-danger" *ngIf="cliente_nit.invalid && (cliente_nit.dirty || cliente_nit.touched)">
+                <div *ngIf="cliente_nit.errors?.['required']">
+                  La cedula del cliente es requerida.
+                </div>
+              </div>
+            </div>
+            <div class="col-2" *ngIf="rolSelect.rol_nombre === 'EMPLEADO' || !rolSelect.rol_nombre">
+              <div class="input-group">
+                <input class="input--style-2" type="text" placeholder="Correo electronico" name="correo"
+                  [(ngModel)]="usuario.correo_electronico" #correo_electronico="ngModel" required>
+              </div>
+              <div class="alert alert-danger"
+                *ngIf="correo_electronico.invalid && (correo_electronico.dirty || correo_electronico.touched)">
+                <div *ngIf="correo_electronico.errors?.['required']">
+                  El correo electronico es requerido.
+                </div>
+              </div>
+            </div>
+            <div class="col-2" *ngIf="rolSelect.rol_nombre === 'PROVEEDOR'">
+              <div class="input-group">
+                <input class="input--style-2" type="text" placeholder="Ciudad" name="ciudad"
+                  [(ngModel)]="proveedor.ciudad_proveedor" #ciudad_proveedor="ngModel" required>
+              </div>
+              <div class="alert alert-danger"
+                *ngIf="ciudad_proveedor.invalid && (ciudad_proveedor.dirty || ciudad_proveedor.touched)">
+                <div *ngIf="ciudad_proveedor.errors?.['required']">
+                  La ciudad del proveedor es requerida.
+                </div>
+              </div>
+            </div>
+            <div class="col-2" *ngIf="rolSelect.rol_nombre === 'CLIENTE'">
+              <div class="input-group">
+                <input class="input--style-2" type="text" placeholder="Ciudad" name="ciudad"
+                  [(ngModel)]="cliente.cliente_ciudad" #cliente_ciudad="ngModel" required>
+              </div>
+              <div class="alert alert-danger"
+                *ngIf="cliente_ciudad.invalid && (cliente_ciudad.dirty || cliente_ciudad.touched)">
+                <div *ngIf="cliente_ciudad.errors?.['required']">
+                  La ciudad del cliente es requerida.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row row-space" *ngIf="rolSelect.rol_nombre === 'EMPLEADO' || !rolSelect.rol_nombre">
+            <div class="col-2">
+              <div class="input-group">
+                <input class="input--style-2" type="text" placeholder="Usuario" name="usuario"
+                  [(ngModel)]="usuario.usuario" #usuario_nombre="ngModel" required>
+              </div>
+              <div class="alert alert-danger"
+                *ngIf="usuario_nombre.invalid && (usuario_nombre.dirty || usuario_nombre.touched)">
+                <div *ngIf="usuario_nombre.errors?.['required']">
+                  El usuario es requerido.
+                </div>
+              </div>
+            </div>
+            <div class="col-2">
+              <div class="input-group">
+                <input class="input--style-2" type="text" placeholder="Contraseña" name="clave"
+                  [(ngModel)]="usuario.clave" #clave="ngModel" required>
+              </div>
+              <div class="alert alert-danger" *ngIf="clave.invalid && (clave.dirty || clave.touched)">
+                <div *ngIf="clave.errors?.['required']">
+                  La contraseña es requerida.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row row-space">
+            <div class="col-2" *ngIf="rolSelect.rol_nombre === 'PROVEEDOR'">
+              <div class="input-group">
+                <input class="input--style-2" type="text" placeholder="Direccion" name="direccion_proveedor"
+                  [(ngModel)]="proveedor.direccion_proveedor" #direccion_proveedor="ngModel" required>
+              </div>
+              <div class="alert alert-danger"
+                *ngIf="direccion_proveedor.invalid && (direccion_proveedor.dirty || direccion_proveedor.touched)">
+                <div *ngIf="direccion_proveedor.errors?.['required']">
+                  La direccion del proveedor es requerida.
+                </div>
+              </div>
+            </div>
+            <div class="col-2" *ngIf="rolSelect.rol_nombre === 'CLIENTE'">
+              <div class="input-group">
+                <input class="input--style-2" type="text" placeholder="Direccion" name="cliente_direccion"
+                  [(ngModel)]="cliente.cliente_direccion" #cliente_direccion="ngModel" required>
+              </div>
+              <div class="alert alert-danger"
+                *ngIf="cliente_direccion.invalid && (cliente_direccion.dirty || cliente_direccion.touched)">
+                <div *ngIf="cliente_direccion.errors?.['required']">
+                  La direccion del proveedor es requerida.
+                </div>
+              </div>
+            </div>
+            <div class="col-2" *ngIf="rolSelect.rol_nombre === 'PROVEEDOR'">
+              <div class="input-group">
+                <input class="input--style-2" type="number" placeholder="Telefono" name=" telefono_proveedor"
+                  [(ngModel)]="proveedor.telefono_proveedor" #telefono_proveedor="ngModel" required>
+              </div>
+              <div class="alert alert-danger"
+                *ngIf="telefono_proveedor.invalid && (telefono_proveedor.dirty || telefono_proveedor.touched)">
+                <div *ngIf="telefono_proveedor.errors?.['required']">
+                  El telefono del proveedor es requerido.
+                </div>
+              </div>
+            </div>
+            <div class="col-2" *ngIf="rolSelect.rol_nombre === 'CLIENTE'">
+              <div class="input-group">
+                <input class="input--style-2" type="number" placeholder="Telefono" name="cliente_telefono"
+                  [(ngModel)]="cliente.cliente_telefono" #cliente_telefono="ngModel" required>
+              </div>
+              <div class="alert alert-danger"
+                *ngIf="cliente_telefono.invalid && (cliente_telefono.dirty || cliente_telefono.touched)">
+                <div *ngIf="cliente_telefono.errors?.['required']">
+                  El telefono del cliente es requerido.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="p-t-30">
+            <button class="btn btn--radius btn--green" type="submit"
+              [disabled]="!usuarioForm.form.valid || !rolSelect.rol_nombre">Registrar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

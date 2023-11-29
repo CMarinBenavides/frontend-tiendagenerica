@@ -1,0 +1,29 @@
+<div class="px-5 mt-2">
+  <p class="h1 text-center">Proveedores</p>
+  <table datatable [dtOptions]="dtOptions" class="table table-bordered mt-3" id="tablaUsuario" *ngIf="proveedores">
+    <thead>
+      <tr>
+        <th scope="col" class="text-center">NIT</th>
+        <th scope="col" class="text-center">Nombre</th>
+        <th scope="col" class="text-center">Telefono</th>
+        <th scope="col" class="text-center">Ciudad</th>
+        <th scope="col" class="text-center">Dirección</th>
+        <th scope="col" class="text-center">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let proveedor of proveedores">
+        <td>{{proveedor.nitProveedor}}</td>
+        <td>{{proveedor.nombre_proveedor}}</td>
+        <td>{{proveedor.telefono_proveedor}}</td>
+        <td>{{proveedor.ciudad_proveedor}}</td>
+        <td>{{proveedor.direccion_proveedor}}</td>
+        <td class="d-flex justify-content-center">
+          <button class="btn btn-warning">Editar</button>
+          <button class="btn btn-danger mx-4" (click)="deleteProveedor(proveedor.nitProveedor)">Eliminar</button>
+          <button class="btn btn-primary" (click)="getUserDetails(proveedor.nitProveedor)">Detalles</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

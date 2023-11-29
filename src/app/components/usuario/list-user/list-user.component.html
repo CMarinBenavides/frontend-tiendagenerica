@@ -1,0 +1,27 @@
+<div class="px-5 mt-2">
+  <p class="h1 text-center">Empleados</p>
+  <table datatable [dtOptions]="dtOptions" class="table table-bordered mt-3" id="tablaUsuario" *ngIf="usuarios">
+    <thead>
+      <tr>
+        <th scope="col" class="text-center">Cedula</th>
+        <th scope="col" class="text-center">Nombre completo</th>
+        <th scope="col" class="text-center">Usuario</th>
+        <th scope="col" class="text-center">Correo</th>
+        <th scope="col" class="text-center">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let usuario of usuarios">
+        <td>{{usuario.cedula}}</td>
+        <td>{{usuario.nombre_completo}}</td>
+        <td>{{usuario.usuario}}</td>
+        <td>{{usuario.correo_electronico}}</td>
+        <td class="d-flex justify-content-center">
+          <button class="btn btn-warning">Editar</button>
+          <button class="btn btn-danger mx-4" (click)="deleteUser(usuario.cedula)">Eliminar</button>
+          <button class="btn btn-primary" (click)="getUserDetails(usuario.cedula,usuario.roles)">Detalles</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
